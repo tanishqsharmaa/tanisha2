@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-ivory: #F7F1E7;
+  --color-beige: #E9DCC8;
+  --color-indigo: #263B59;
+  --color-madder: #A63D35;
+  --color-turmeric: #D6A642;
+  --color-forest: #526B50;
+  --color-terracotta: #B86B4B;
+  --color-charcoal: #352D28;
+}
+
+body {
+  background-color: #F7F1E7;
+  color: #352D28;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, .font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
