@@ -30,12 +30,40 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
   const activeSlug = hoveredSlug || selectedState;
   const activeEntity = activeSlug ? getStateBySlug(activeSlug) : undefined;
 
+  const showTooltipForState = (
+    slug: string,
+    center: [number, number],
+    calloutPos?: { x: number; y: number },
+    element?: SVGElement | null
+  ) => {
+    setHoveredSlug(slug);
+    const targetX = calloutPos ? calloutPos.x : center[0];
+    const targetY = calloutPos ? calloutPos.y : center[1];
+    const rect = element?.ownerSVGElement?.getBoundingClientRect();
+
+    if (rect && rect.width > 0 && rect.height > 0) {
+      setTooltipPos({
+        x: (targetX / 1000) * rect.width,
+        y: (targetY / 1000) * rect.height,
+      });
+    } else {
+      setTooltipPos({
+        x: (targetX / 1000) * 600,
+        y: (targetY / 1000) * 600,
+      });
+    }
+  };
+
+  const hideTooltip = () => {
+    setHoveredSlug(null);
+    setTooltipPos(null);
+  };
+
   const handleStateClick = (slug: string) => {
     if (onSelectState) {
       onSelectState(slug);
-    } else {
-      navigate(`/states/${slug}`);
     }
+    navigate(`/states/${slug}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, slug: string) => {
@@ -49,6 +77,7 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
     if (onSelectRegion) onSelectRegion(null);
     if (onSelectState) onSelectState('');
     setHoveredSlug(null);
+    setTooltipPos(null);
   };
 
   const getRegionColor = (regionId: RegionId, isHovered: boolean, isSelected: boolean) => {
@@ -86,7 +115,7 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
-          {selectedRegion && (
+          {(selectedRegion || selectedState) && (
             <button
               onClick={handleReset}
               className="inline-flex items-center gap-1 px-3 py-1 text-xs font-medium text-charcoal/80 bg-beige/60 hover:bg-beige rounded-md transition-colors"
@@ -173,17 +202,10 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
                   strokeLinecap="round"
                   opacity={isRegionDimmed ? 0.35 : 1}
                   className="cursor-pointer transition-all duration-200 outline-none focus:stroke-indigo focus:stroke-[3px]"
-                  onMouseEnter={(e) => {
-                    setHoveredSlug(item.slug);
-                    const rect = e.currentTarget.ownerSVGElement?.getBoundingClientRect();
-                    if (rect) {
-                      setTooltipPos({
-                        x: (item.center[0] / 1000) * rect.width,
-                        y: (item.center[1] / 1000) * rect.height,
-                      });
-                    }
-                  }}
-                  onMouseLeave={() => setHoveredSlug(null)}
+                  onMouseEnter={(e) => showTooltipForState(item.slug, item.center, undefined, e.currentTarget)}
+                  onMouseLeave={hideTooltip}
+                  onFocus={(e) => showTooltipForState(item.slug, item.center, undefined, e.currentTarget)}
+                  onBlur={hideTooltip}
                   onClick={() => handleStateClick(item.slug)}
                   onKeyDown={(e) => handleKeyDown(e, item.slug)}
                 />
@@ -198,6 +220,8 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
               const isHovered = hoveredSlug === item.slug;
               const isSelected = selectedState === item.slug;
               const isRegionDimmed = selectedRegion && item.regionId !== selectedRegion;
+              const displayLabel = item.shortLabel || item.name;
+              const badgeWidth = displayLabel.length * 7.5 + 14;
 
               return (
                 <g
@@ -207,10 +231,26 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
                   role="button"
                   tabIndex={0}
                   aria-label={`${item.name} Callout`}
-                  className="cursor-pointer outline-none"
+                  className="cursor-pointer outline-none focus:outline-none"
                   opacity={isRegionDimmed ? 0.3 : 1}
-                  onMouseEnter={() => setHoveredSlug(item.slug)}
-                  onMouseLeave={() => setHoveredSlug(null)}
+                  onMouseEnter={(e) =>
+                    showTooltipForState(
+                      item.slug,
+                      item.center,
+                      { x: callout.x, y: callout.y },
+                      e.currentTarget.ownerSVGElement ? (e.currentTarget as unknown as SVGElement) : null
+                    )
+                  }
+                  onMouseLeave={hideTooltip}
+                  onFocus={(e) =>
+                    showTooltipForState(
+                      item.slug,
+                      item.center,
+                      { x: callout.x, y: callout.y },
+                      e.currentTarget.ownerSVGElement ? (e.currentTarget as unknown as SVGElement) : null
+                    )
+                  }
+                  onBlur={hideTooltip}
                   onClick={() => handleStateClick(item.slug)}
                   onKeyDown={(e) => handleKeyDown(e, item.slug)}
                 >
@@ -237,7 +277,7 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
                   <rect
                     x={callout.x - 4}
                     y={callout.y - 12}
-                    width={item.name.length * 7.5 + 14}
+                    width={badgeWidth}
                     height={20}
                     rx={4}
                     fill={isSelected ? '#A63D35' : isHovered ? '#D6A642' : '#F7F1E7'}
@@ -252,7 +292,7 @@ export const IndiaMapSvg: React.FC<IndiaMapSvgProps> = ({
                     fill={isSelected ? '#F7F1E7' : '#263B59'}
                     fontFamily="sans-serif"
                   >
-                    {item.name}
+                    {displayLabel}
                   </text>
                 </g>
               );

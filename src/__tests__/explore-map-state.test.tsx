@@ -89,6 +89,69 @@ describe('IndiaMapSvg Component', () => {
     fireEvent.click(resetBtn);
     expect(handleSelectRegion).toHaveBeenCalledWith(null);
   });
+
+  it('renders and operates the reset button when selectedState is active', () => {
+    const handleSelectState = vi.fn();
+    render(
+      <MemoryRouter>
+        <IndiaMapSvg selectedState="gujarat" onSelectState={handleSelectState} />
+      </MemoryRouter>
+    );
+
+    const resetBtn = screen.getByRole('button', { name: /Reset \/ Back to All Regions/i });
+    expect(resetBtn).toBeInTheDocument();
+
+    fireEvent.click(resetBtn);
+    expect(handleSelectState).toHaveBeenCalledWith('');
+  });
+
+  it('renders shortLabels for compact callout badges without clipping', () => {
+    render(
+      <MemoryRouter>
+        <IndiaMapSvg />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('DNH & DD')).toBeInTheDocument();
+    expect(screen.getByText('Andaman & Nicobar')).toBeInTheDocument();
+  });
+
+  it('displays floating tooltip on hover and keyboard focus for paths and callouts, and hides on blur/leave', () => {
+    render(
+      <MemoryRouter>
+        <IndiaMapSvg />
+      </MemoryRouter>
+    );
+
+    const gujaratPath = document.querySelector('path[data-state-slug="gujarat"]');
+    expect(gujaratPath).not.toBeNull();
+    if (gujaratPath) {
+      // Hover displays tooltip
+      fireEvent.mouseEnter(gujaratPath);
+      expect(screen.getByText('Complete Archive Available')).toBeInTheDocument();
+
+      fireEvent.mouseLeave(gujaratPath);
+      expect(screen.queryByText('Complete Archive Available')).toBeNull();
+
+      // Keyboard focus displays tooltip
+      fireEvent.focus(gujaratPath);
+      expect(screen.getByText('Complete Archive Available')).toBeInTheDocument();
+
+      fireEvent.blur(gujaratPath);
+      expect(screen.queryByText('Complete Archive Available')).toBeNull();
+    }
+
+    // Callout focus displays tooltip
+    const delhiCallout = screen.getByTestId('callout-delhi');
+    expect(screen.getAllByText('Delhi')).toHaveLength(1);
+    fireEvent.focus(delhiCallout);
+    expect(screen.getByText('Textile information is being added')).toBeInTheDocument();
+    expect(screen.getAllByText('Delhi')).toHaveLength(2);
+
+    fireEvent.blur(delhiCallout);
+    expect(screen.queryByText('Textile information is being added')).toBeNull();
+    expect(screen.getAllByText('Delhi')).toHaveLength(1);
+  });
 });
 
 describe('RegionExplorer Component', () => {
@@ -185,6 +248,38 @@ describe('ExplorePage Component', () => {
     const patolaLinks = screen.getAllByRole('link', { name: /Patan Patola/i });
     expect(patolaLinks.length).toBeGreaterThan(0);
     expect(patolaLinks[0].getAttribute('href')).toBe('/textiles/patan-patola');
+  });
+
+  it('navigates to /states/gujarat when clicking Gujarat on the interactive map from ExplorePage', () => {
+    render(
+      <MemoryRouter initialEntries={['/explore']}>
+        <Routes>
+          <Route path="/explore" element={<ExplorePage />} />
+          <Route path="/states/:stateSlug" element={<StatePage />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const gujaratPath = document.querySelector('path[data-state-slug="gujarat"]');
+    expect(gujaratPath).not.toBeNull();
+    if (gujaratPath) {
+      fireEvent.click(gujaratPath);
+    }
+
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Gujarat — A Legacy of Colour, Craft and Weaving' })
+    ).toBeInTheDocument();
+  });
+
+  it('renders section with id="regions" anchor for seamless deep-linking from Home page', () => {
+    render(
+      <MemoryRouter>
+        <ExplorePage />
+      </MemoryRouter>
+    );
+
+    const regionsSection = document.getElementById('regions');
+    expect(regionsSection).not.toBeNull();
   });
 });
 

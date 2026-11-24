@@ -73,7 +73,7 @@ const ExplorePage: React.FC = () => {
       {/* ======================================================== */}
       {/* SECTION A: EXPLORE BY REGION (Cartographic & Directory)  */}
       {/* ======================================================== */}
-      <section id="explore-by-region" className="space-y-8 scroll-mt-20">
+      <section id="regions" className="space-y-8 scroll-mt-20">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-beige pb-4">
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-madder mb-1">

@@ -142,7 +142,7 @@ const StatePage: React.FC = () => {
               </div>
               <div className="p-2.5 rounded-lg bg-ivory border border-beige">
                 <span className="font-serif font-bold text-indigo block">Surendranagar</span>
-                <span className="text-charcoal/70">Tangaliya Danano Raised Dot Weaving</span>
+                <span className="text-charcoal/70">Tangaliya Daana Raised Dot Weaving</span>
               </div>
             </div>
           </div>
