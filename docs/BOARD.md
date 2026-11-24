@@ -5,11 +5,11 @@ Reviewer: `Reviewer` (`#a54`, Model: **Gemini 4 Neon**)
 
 | Task ID | Title | Owner | Facade ID | Dependencies | Branch | Packet Path | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`T00`** | Project Harness, Frontend Scaffold, Archival Data Layer & Persistent Shell | `Worker_1` | `#a50` | None | `task/T00` | `F:\tanisha2\docs\exec-plans\active\T00.md` | **PLANNED (Awaiting Approval)** |
-| **`T01`** | Home Page & Search Page Experience | `Worker_1` | `#a50` | `T00` | `task/T01` | `F:\tanisha2\docs\exec-plans\active\T01.md` | **PLANNED (Awaiting Approval)** |
-| **`T02`** | Interactive Map of India (28 States + 8 UTs), Explore Page & State Pages (Complete Gujarat Page) | `Worker_2` | `#a51` | `T00` | `task/T02` | `F:\tanisha2\docs\exec-plans\active\T02.md` | **PLANNED (Awaiting Approval)** |
-| **`T03`** | Patan Patola Complete Detail Page (Sections A–J), Textile Classification Detail & About Page | `Worker_3` | `#a52` | `T00` | `task/T03` | `F:\tanisha2\docs\exec-plans\active\T03.md` | **PLANNED (Awaiting Approval)** |
-| **`T04`** | End-to-End 5 User Journeys Verification Suite & Browser QA | `Worker_1` | `#a50` | `T01`, `T02`, `T03` | `task/T04` | `F:\tanisha2\docs\exec-plans\active\T04.md` | **PLANNED (Awaiting Approval)** |
+| **`T00`** | Project Harness, Frontend Scaffold, Archival Data Layer & Persistent Shell | `Worker_1` | `#a50` | None | `task/T00` | `F:\tanisha2\docs\exec-plans\active\T00.md` | **MERGED (`main`)** |
+| **`T01`** | Home Page & Search Page Experience | `Worker_1` | `#a50` | `T00` | `task/T01` | `F:\tanisha2\docs\exec-plans\active\T01.md` | **IN_PROGRESS** |
+| **`T02`** | Interactive Map of India (28 States + 8 UTs), Explore Page & State Pages (Complete Gujarat Page) | `Worker_2` | `#a51` | `T00` | `task/T02` | `F:\tanisha2\docs\exec-plans\active\T02.md` | **IN_PROGRESS** |
+| **`T03`** | Patan Patola Complete Detail Page (Sections A–J), Textile Classification Detail & About Page | `Worker_3` | `#a52` | `T00` | `task/T03` | `F:\tanisha2\docs\exec-plans\active\T03.md` | **IN_PROGRESS** |
+| **`T04`** | End-to-End 5 User Journeys Verification Suite & Browser QA | `Worker_1` | `#a50` | `T01`, `T02`, `T03` | `task/T04` | `F:\tanisha2\docs\exec-plans\active\T04.md` | **QUEUED (Waiting on T01–T03)** |
 
 ---
 
