@@ -112,27 +112,36 @@ export const HomePage: React.FC = () => {
             <div className="lg:col-span-5 relative">
               <div className="relative mx-auto max-w-sm sm:max-w-md lg:max-w-none">
                 <div className="absolute -inset-2 rounded-2xl bg-gradient-to-tr from-turmeric/20 to-madder/20 blur-xl opacity-50" />
-                <div className="relative rounded-2xl border border-beige bg-ivory overflow-hidden shadow-lg p-3">
+                <Link
+                  to="/textiles/patan-patola"
+                  aria-label="Explore Patan Patola Double Ikat"
+                  className="group block relative rounded-2xl border border-beige bg-ivory overflow-hidden shadow-lg p-3 hover:border-terracotta/40 hover:shadow-xl transition-all duration-300"
+                >
                   <div className="aspect-[4/3] rounded-xl overflow-hidden bg-beige/40">
                     <TextileImage
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Patola_weaving_Patan_Gujarat.jpg/1280px-Patola_weaving_Patan_Gujarat.jpg"
                       alt="Patan Patola Double Ikat Weaving"
                       motifType="patola"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <div className="p-3 text-left">
-                    <span className="text-[10px] uppercase tracking-wider text-madder font-bold block">
-                      Featured Masterwork · Patan, Gujarat
-                    </span>
-                    <h3 className="font-serif text-base font-bold text-indigo">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-wider text-madder font-bold block">
+                        Featured Masterwork · Patan, Gujarat
+                      </span>
+                      <span className="text-[10px] text-indigo font-semibold group-hover:translate-x-1 transition-transform">
+                        Explore →
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-base font-bold text-indigo group-hover:text-madder transition-colors">
                       Patan Patola Double Ikat
                     </h3>
                     <p className="text-xs text-charcoal/70 line-clamp-2 mt-0.5">
                       Both warp and weft silk threads resist-dyed prior to weaving with mathematical precision.
                     </p>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -278,7 +287,7 @@ export const HomePage: React.FC = () => {
         <div
           role="region"
           aria-label="Featured Textiles Carousel"
-          className="flex space-x-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-beige scrollbar-track-transparent"
+          className="flex space-x-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory"
         >
           {featuredTextiles.map((textile) => (
             <div

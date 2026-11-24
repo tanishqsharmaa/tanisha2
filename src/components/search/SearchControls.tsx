@@ -9,14 +9,63 @@ export interface SearchFilters {
   material: string;
 }
 
-interface SearchControlsProps {
+export interface FilterOption {
+  label: string;
+  value: string;
+}
+
+export type OptionInput = string | FilterOption;
+
+export const normalizeOption = (opt: OptionInput): FilterOption =>
+  typeof opt === 'string' ? { label: opt, value: opt } : opt;
+
+export const TEXTILE_OPTIONS: FilterOption[] = [
+  { label: 'Patan Patola', value: 'Patan Patola' },
+  { label: 'Bandhani', value: 'Bandhani' },
+  { label: 'Mashru', value: 'Mashru' },
+  { label: 'Tangaliya', value: 'Tangaliya' },
+  { label: 'Kutch Embroidery', value: 'Kutch Embroidery' },
+  { label: 'Ajrakh', value: 'Ajrakh' },
+  { label: 'Gharchola', value: 'Gharchola' },
+  { label: 'Pochampally Ikat', value: 'Pochampally Ikat' },
+  { label: 'Odisha Ikat', value: 'Odisha Ikat' },
+];
+
+export const STATE_OPTIONS: FilterOption[] = [
+  { label: 'Gujarat', value: 'gujarat' },
+  { label: 'Rajasthan', value: 'rajasthan' },
+  { label: 'Telangana', value: 'telangana' },
+  { label: 'Odisha', value: 'odisha' },
+  { label: 'Assam', value: 'assam' },
+  { label: 'Tamil Nadu', value: 'tamil-nadu' },
+];
+
+export const TECHNIQUE_OPTIONS: FilterOption[] = [
+  { label: 'Double Ikat', value: 'Double Ikat' },
+  { label: 'Tie-Dye (Resist Dyeing)', value: 'Tie-Dye' },
+  { label: 'Block Printing', value: 'Block Print' },
+  { label: 'Surface Embroidery', value: 'Embroidery' },
+  { label: 'Mixed Satin Weave', value: 'Satin Weave' },
+  { label: 'Daana (Bead) Knotting', value: 'Daana (Bead) Knotting' },
+  { label: 'Zari Grid Weave', value: 'Zari Grid Weave' },
+];
+
+export const MATERIAL_OPTIONS: FilterOption[] = [
+  { label: 'Mulberry & Wild Silk', value: 'Silk' },
+  { label: 'Indigenous Cotton', value: 'Cotton' },
+  { label: 'Desi Wool & Pashmina', value: 'Wool' },
+  { label: 'Gold / Silver Zari', value: 'Zari' },
+  { label: 'Botanical & Mineral Dyes', value: 'Natural Dyes' },
+];
+
+export interface SearchControlsProps {
   filters: SearchFilters;
   onChange: (updated: Partial<SearchFilters>) => void;
   onReset: () => void;
-  textileOptions?: string[];
-  stateOptions?: string[];
-  techniqueOptions?: string[];
-  materialOptions?: string[];
+  textileOptions?: OptionInput[];
+  stateOptions?: OptionInput[];
+  techniqueOptions?: OptionInput[];
+  materialOptions?: OptionInput[];
 }
 
 export const SUGGESTION_CHIPS = [
@@ -32,28 +81,10 @@ export const SearchControls: React.FC<SearchControlsProps> = ({
   filters,
   onChange,
   onReset,
-  textileOptions = [
-    'Patan Patola',
-    'Bandhani',
-    'Mashru',
-    'Tangaliya',
-    'Kutch Embroidery',
-    'Ajrakh',
-    'Gharchola',
-    'Pochampally Ikat',
-    'Odisha Ikat',
-  ],
-  stateOptions = ['Gujarat', 'Telangana', 'Odisha'],
-  techniqueOptions = [
-    'Double Ikat',
-    'Tie-Dye',
-    'Block Print',
-    'Embroidery',
-    'Satin Weave',
-    'Bead Knotting',
-    'Zari Grid Weave',
-  ],
-  materialOptions = ['Silk', 'Cotton', 'Wool', 'Zari', 'Natural Dyes'],
+  textileOptions = TEXTILE_OPTIONS,
+  stateOptions = STATE_OPTIONS,
+  techniqueOptions = TECHNIQUE_OPTIONS,
+  materialOptions = MATERIAL_OPTIONS,
 }) => {
   const activeFilterCount =
     (filters.textile && filters.textile !== 'all' ? 1 : 0) +
@@ -155,9 +186,9 @@ export const SearchControls: React.FC<SearchControlsProps> = ({
               className="w-full py-2 px-3 text-xs bg-beige/20 border border-beige rounded-md text-charcoal focus:outline-none focus:border-indigo"
             >
               <option value="all">All Textiles</option>
-              {textileOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
+              {textileOptions.map(normalizeOption).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
                 </option>
               ))}
             </select>
@@ -175,9 +206,9 @@ export const SearchControls: React.FC<SearchControlsProps> = ({
               className="w-full py-2 px-3 text-xs bg-beige/20 border border-beige rounded-md text-charcoal focus:outline-none focus:border-indigo"
             >
               <option value="all">All States</option>
-              {stateOptions.map((opt) => (
-                <option key={opt} value={opt.toLowerCase()}>
-                  {opt}
+              {stateOptions.map(normalizeOption).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
                 </option>
               ))}
             </select>
@@ -195,9 +226,9 @@ export const SearchControls: React.FC<SearchControlsProps> = ({
               className="w-full py-2 px-3 text-xs bg-beige/20 border border-beige rounded-md text-charcoal focus:outline-none focus:border-indigo"
             >
               <option value="all">All Techniques</option>
-              {techniqueOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
+              {techniqueOptions.map(normalizeOption).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
                 </option>
               ))}
             </select>
@@ -215,9 +246,9 @@ export const SearchControls: React.FC<SearchControlsProps> = ({
               className="w-full py-2 px-3 text-xs bg-beige/20 border border-beige rounded-md text-charcoal focus:outline-none focus:border-indigo"
             >
               <option value="all">All Materials</option>
-              {materialOptions.map((opt) => (
-                <option key={opt} value={opt}>
-                  {opt}
+              {materialOptions.map(normalizeOption).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
                 </option>
               ))}
             </select>

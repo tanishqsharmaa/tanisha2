@@ -3,6 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { Search, ArrowRight, Sparkles, RotateCcw } from 'lucide-react';
 import { searchTextiles } from '../../data';
 import { TextileCard } from '../shared/TextileCard';
+import {
+  STATE_OPTIONS,
+  TECHNIQUE_OPTIONS,
+  MATERIAL_OPTIONS,
+} from './SearchControls';
 
 export const FindYourTextileSection: React.FC = () => {
   const navigate = useNavigate();
@@ -107,12 +112,11 @@ export const FindYourTextileSection: React.FC = () => {
             className="w-full px-3 py-2.5 text-xs bg-ivory border border-beige rounded-md text-charcoal focus:outline-none focus:ring-1 focus:ring-indigo focus:border-indigo"
           >
             <option value="all">All States</option>
-            <option value="gujarat">Gujarat</option>
-            <option value="rajasthan">Rajasthan</option>
-            <option value="telangana">Telangana</option>
-            <option value="odisha">Odisha</option>
-            <option value="assam">Assam</option>
-            <option value="tamil-nadu">Tamil Nadu</option>
+            {STATE_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
           <p className="text-[11px] text-charcoal/60">Explore regional weaving clusters</p>
         </div>
@@ -129,13 +133,11 @@ export const FindYourTextileSection: React.FC = () => {
             className="w-full px-3 py-2.5 text-xs bg-ivory border border-beige rounded-md text-charcoal focus:outline-none focus:ring-1 focus:ring-indigo focus:border-indigo"
           >
             <option value="all">All Techniques</option>
-            <option value="Double Ikat">Double Ikat</option>
-            <option value="Tie-Dye">Tie-Dye (Resist Dyeing)</option>
-            <option value="Block Print">Block Printing</option>
-            <option value="Embroidery">Surface Embroidery</option>
-            <option value="Satin Weave">Mixed Satin Weave</option>
-            <option value="Bead Knotting">Bead Knotting (Daana)</option>
-            <option value="Zari Grid">Zari Grid Weave</option>
+            {TECHNIQUE_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
           <p className="text-[11px] text-charcoal/60">Discover looms & dye methods</p>
         </div>
@@ -152,11 +154,11 @@ export const FindYourTextileSection: React.FC = () => {
             className="w-full px-3 py-2.5 text-xs bg-ivory border border-beige rounded-md text-charcoal focus:outline-none focus:ring-1 focus:ring-indigo focus:border-indigo"
           >
             <option value="all">All Materials</option>
-            <option value="Silk">Mulberry & Wild Silk</option>
-            <option value="Cotton">Indigenous Cotton</option>
-            <option value="Wool">Desi Wool & Pashmina</option>
-            <option value="Zari">Gold / Silver Zari</option>
-            <option value="Natural Dyes">Botanical & Mineral Dyes</option>
+            {MATERIAL_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
           <p className="text-[11px] text-charcoal/60">Identify natural raw fibers</p>
         </div>

@@ -3,9 +3,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import SearchPage from '../pages/SearchPage';
+import { FindYourTextileSection } from '../components/search/FindYourTextileSection';
 
 describe('Home Page Experience (Master Prompt Section 4 / T01)', () => {
-  it('renders Hero Section with exact title, supporting text, and both CTAs', () => {
+  it('renders Hero Section with exact title, supporting text, both CTAs, and Hero Patan Patola card linking to /textiles/patan-patola', () => {
     render(
       <MemoryRouter>
         <HomePage />
@@ -26,6 +27,11 @@ describe('Home Page Experience (Master Prompt Section 4 / T01)', () => {
     const regionCta = screen.getByRole('link', { name: /Discover by Region/i });
     expect(regionCta).toBeInTheDocument();
     expect(regionCta).toHaveAttribute('href', '/explore#regions');
+
+    // Hero Patan Patola Showcase card link
+    const heroShowcaseLink = screen.getByRole('link', { name: /Explore Patan Patola Double Ikat/i });
+    expect(heroShowcaseLink).toBeInTheDocument();
+    expect(heroShowcaseLink).toHaveAttribute('href', '/textiles/patan-patola');
   });
 
   it('renders "A Heritage Woven Through Generations" two-column editorial introduction', () => {
@@ -113,6 +119,23 @@ describe('Home Page Experience (Master Prompt Section 4 / T01)', () => {
     fireEvent.click(resetBtn);
     expect(input).toHaveValue('');
   });
+
+  it('finds Tangaliya when filtering by "Daana (Bead) Knotting" in FindYourTextileSection', () => {
+    render(
+      <MemoryRouter>
+        <FindYourTextileSection />
+      </MemoryRouter>
+    );
+
+    const techniqueSelect = screen.getByLabelText(/3\. Search by Technique/i);
+    fireEvent.change(techniqueSelect, { target: { value: 'Daana (Bead) Knotting' } });
+
+    const searchBtn = screen.getByRole('button', { name: /^Search$/i });
+    fireEvent.click(searchBtn);
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Tangaliya' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Patan Patola' })).not.toBeInTheDocument();
+  });
 });
 
 describe('Search Page Experience (Master Prompt Section 5 / T01)', () => {
@@ -175,6 +198,77 @@ describe('Search Page Experience (Master Prompt Section 5 / T01)', () => {
 
     expect(screen.getByRole('heading', { level: 3, name: 'Patan Patola' })).toBeInTheDocument();
     expect(screen.queryByRole('heading', { level: 3, name: 'Bandhani' })).not.toBeInTheDocument();
+
+    // Narrow down by Material Silk
+    const materialSelect = screen.getByLabelText('Material');
+    fireEvent.change(materialSelect, { target: { value: 'Silk' } });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Patan Patola' })).toBeInTheDocument();
+  });
+
+  it('filters by textile dropdown filter', () => {
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <SearchPage />
+      </MemoryRouter>
+    );
+
+    const textileSelect = screen.getByLabelText('Textile');
+    fireEvent.change(textileSelect, { target: { value: 'Bandhani' } });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Bandhani' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Patan Patola' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Mashru' })).not.toBeInTheDocument();
+  });
+
+  it('filters by "Daana (Bead) Knotting" technique returning Tangaliya', () => {
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <SearchPage />
+      </MemoryRouter>
+    );
+
+    const techniqueSelect = screen.getByLabelText('Technique');
+    fireEvent.change(techniqueSelect, { target: { value: 'Daana (Bead) Knotting' } });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Tangaliya' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Patan Patola' })).not.toBeInTheDocument();
+  });
+
+  it('filters by material (Desi Wool & Pashmina / Wool) returning Tangaliya', () => {
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <SearchPage />
+      </MemoryRouter>
+    );
+
+    const materialSelect = screen.getByLabelText('Material');
+    fireEvent.change(materialSelect, { target: { value: 'Wool' } });
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Tangaliya' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Patan Patola' })).not.toBeInTheDocument();
+  });
+
+  it('updates filters and results when clicking suggestion chips', () => {
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <SearchPage />
+      </MemoryRouter>
+    );
+
+    // Click "Ajrakh" suggestion chip
+    const ajrakhChip = screen.getByRole('button', { name: 'Ajrakh' });
+    fireEvent.click(ajrakhChip);
+
+    expect(screen.getByRole('heading', { level: 3, name: 'Ajrakh' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 3, name: 'Patan Patola' })).not.toBeInTheDocument();
+
+    // Click "Silk" suggestion chip (material filter)
+    const silkChip = screen.getByRole('button', { name: 'Silk' });
+    fireEvent.click(silkChip);
+
+    // Clear filters button should be visible
+    expect(screen.getByRole('button', { name: /Clear Filters/i })).toBeInTheDocument();
   });
 
   it('renders helpful empty state with reset button on non-matching query', () => {
