@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "facade": {
+      "command": "D:\\vs code\\Microsoft VS Code\\Code.exe",
+      "args": [
+        "c:\\Users\\zeenbook\\.vscode\\extensions\\facade.facadecode-0.1.5-win32-x64\\dist\\shim.js"
+      ],
+      "env": {
+        "ELECTRON_RUN_AS_NODE": "1"
+      }
+    }
+  }
+}
