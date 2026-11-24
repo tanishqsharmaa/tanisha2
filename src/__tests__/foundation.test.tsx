@@ -89,7 +89,7 @@ describe('Data Layer Integrity', () => {
     expect(TEXTILE_CATEGORIES[14].title).toBe('Mizo Puans & Regional Handloom Clusters');
   });
 
-  it('exports verified Section 8 A–J archive for Patan Patola', () => {
+  it('exports verified Section 8 A–J archive for Patan Patola with exact official URLs', () => {
     const patola = getTextileBySlug('patan-patola');
     expect(patola).toBeDefined();
     if (!patola) return;
@@ -125,8 +125,12 @@ describe('Data Layer Integrity', () => {
       'geometric-diamonds',
     ]);
 
-    // 4 Sources
+    // 4 Sources with exact Section 8J official URLs
     expect(patola.sources).toHaveLength(4);
+    expect(patola.sources?.[0].url).toBe('https://www.incredibleindia.gov.in/en/gujarat/patan-patola');
+    expect(patola.sources?.[1].url).toBe('https://patan.nic.in/tourist-place/patola/');
+    expect(patola.sources?.[2].url).toBe('https://gujarattourism.com/north-zone/patan/patola.html');
+    expect(patola.sources?.[3].url).toBe('https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/232');
 
     // 4 Related textiles
     expect(patola.relatedTextileSlugs).toEqual([
@@ -169,7 +173,7 @@ describe('Data Layer Integrity', () => {
 describe('Persistent Shell & Components', () => {
   it('renders Navbar with logo, tagline, links, and search shortcut', () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={['/']}>
         <Navbar />
       </MemoryRouter>
     );
@@ -186,6 +190,41 @@ describe('Persistent Shell & Components', () => {
     expect(toggleButton).toBeInTheDocument();
     fireEvent.click(toggleButton);
     expect(screen.getByText('Preserving Living Handloom Knowledge')).toBeInTheDocument();
+  });
+
+  it('ensures Home link is NOT active when on /explore or /search routes', () => {
+    // Render on /explore
+    const { unmount } = render(
+      <MemoryRouter initialEntries={['/explore']}>
+        <Navbar />
+      </MemoryRouter>
+    );
+
+    const homeLink = screen.getByRole('link', { name: /^home$/i });
+    const exploreLink = screen.getByRole('link', { name: /^explore$/i });
+
+    // Home must NOT have active styling (text-madder border-madder)
+    expect(homeLink).not.toHaveClass('text-madder');
+    expect(homeLink).toHaveClass('text-charcoal/80');
+
+    // Explore MUST have active styling
+    expect(exploreLink).toHaveClass('text-madder');
+    expect(exploreLink).toHaveClass('border-madder');
+
+    unmount();
+
+    // Render on /search
+    render(
+      <MemoryRouter initialEntries={['/search']}>
+        <Navbar />
+      </MemoryRouter>
+    );
+
+    const homeLinkSearch = screen.getByRole('link', { name: /^home$/i });
+    const searchLink = screen.getByRole('link', { name: /^search$/i });
+
+    expect(homeLinkSearch).not.toHaveClass('text-madder');
+    expect(searchLink).toHaveClass('text-madder');
   });
 
   it('renders TextileCard with Complete Archive badge for Patan Patola', () => {

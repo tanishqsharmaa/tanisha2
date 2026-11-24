@@ -33,6 +33,7 @@ export const Navbar: React.FC = () => {
               <NavLink
                 key={link.path}
                 to={link.path}
+                end={link.path === '/'}
                 className={({ isActive }) =>
                   `text-sm font-medium tracking-wider uppercase transition-colors py-1 border-b-2 ${
                     isActive
@@ -82,6 +83,7 @@ export const Navbar: React.FC = () => {
             <NavLink
               key={link.path}
               to={link.path}
+              end={link.path === '/'}
               onClick={() => setMobileMenuOpen(false)}
               className={({ isActive }) =>
                 `block px-3 py-2 rounded-md text-base font-medium uppercase tracking-wider ${

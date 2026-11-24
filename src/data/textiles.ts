@@ -1,7 +1,9 @@
 import { TextileRecord } from '../types/archive';
 
 export const TEXTILES: TextileRecord[] = [
-  // 1. Patan Patola - Complete Sections A–J Full Archive Record
+  // ==========================================
+  // FULL SECTION 8 A–J VERIFIED ARCHIVE RECORD
+  // ==========================================
   {
     slug: 'patan-patola',
     name: 'Patan Patola',
@@ -17,12 +19,7 @@ export const TEXTILES: TextileRecord[] = [
       'traditional-regional-sarees-and-ethnic-wear',
     ],
     technique: 'Double Ikat',
-    techniques: [
-      'Double Ikat',
-      'Resist Dyeing',
-      'Handloom Weaving',
-      'Natural Dyeing',
-    ],
+    techniques: ['Double Ikat', 'Resist Dyeing', 'Handloom Weaving', 'Natural Dyeing'],
     material: 'Pure Mulberry Silk',
     materials: ['Silk', 'Natural Dyes'],
     tags: ['Gujarat', 'Patan', 'Silk', 'Double Ikat', 'Handwoven'],
@@ -155,31 +152,33 @@ export const TEXTILES: TextileRecord[] = [
       {
         title: 'Patan Patola — Incredible India',
         publisher: 'Ministry of Tourism, Government of India',
-        url: 'https://www.incredibleindia.gov.in/',
+        url: 'https://www.incredibleindia.gov.in/en/gujarat/patan-patola',
       },
       {
         title: 'Patola Weaving Heritage — Patan District',
         publisher: 'Government of Gujarat NIC',
-        url: 'https://patan.nic.in/',
+        url: 'https://patan.nic.in/tourist-place/patola/',
       },
       {
         title: 'Gujarat Handlooms & Crafts: Patola of Patan',
         publisher: 'Gujarat Tourism',
-        url: 'https://www.gujarattourism.com/',
+        url: 'https://gujarattourism.com/north-zone/patan/patola.html',
       },
       {
         title: 'Geographical Indications Application No. 232: Patan Patola',
         publisher: 'Intellectual Property India (GI Registry)',
-        url: 'https://search.ipindia.gov.in/GIRPublic/',
+        url: 'https://search.ipindia.gov.in/GIRPublicSearch/Application/Details/232',
       },
     ],
   },
 
-  // 2. Bandhani (Gujarat Preview)
+  // ==========================================
+  // GUJARAT PREVIEW TEXTILES (isFullyDeveloped: false)
+  // ==========================================
   {
     slug: 'bandhani',
     name: 'Bandhani',
-    subtitle: 'The Ancient Tie-Dye Heritage of Gujarat',
+    subtitle: 'The Celestial Tie-Dye Art of Jamnagar & Kutch',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
@@ -189,29 +188,21 @@ export const TEXTILES: TextileRecord[] = [
       'ikat-tie-dye-and-block-printed-textiles',
       'traditional-regional-sarees-and-ethnic-wear',
     ],
-    technique: 'Tie-Dye (Resist Dyeing)',
-    techniques: [
-      'Tie-Dye',
-      'Resist Dyeing',
-      'Hand Pinching',
-      'Natural Dyeing',
-    ],
-    material: 'Silk & Fine Cotton',
-    materials: ['Silk', 'Cotton', 'Natural Dyes'],
+    technique: 'Tie-Dye (Bandhej)',
+    techniques: ['Plucking', 'Resist Tying', 'Natural Dyeing'],
+    material: 'Fine Silk & Georgette',
+    materials: ['Silk', 'Cotton'],
     tags: ['Gujarat', 'Bandhani', 'Tie-Dye', 'Silk', 'Handmade'],
     shortDescription:
-      'Bandhani is an ancient resist-dyeing textile art from Gujarat where fabric is plucked with fingernails into tiny bindings and dyed to form elaborate dotted constellations.',
+      'Bandhani is an ancient resist-dyeing art practiced by Khatri artisans where minute fabric pinches are tightly tied with thread before dyeing to create constellations of sacred dots.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Bandhani_sari.jpg/1280px-Bandhani_sari.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Bandhani_fabric_Gujarat.jpg/1280px-Bandhani_fabric_Gujarat.jpg',
     motifPattern: 'bandhani',
-    relatedTextileSlugs: ['patan-patola', 'gharchola'],
   },
-
-  // 3. Mashru (Gujarat Preview)
   {
     slug: 'mashru',
     name: 'Mashru',
-    subtitle: 'Lustrous Silk-Faced Cotton Weave of Gujarat',
+    subtitle: 'Lustrous Silk-Cotton Permitted Weave',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
@@ -219,194 +210,151 @@ export const TEXTILES: TextileRecord[] = [
     isFullyDeveloped: false,
     categorySlugs: [
       'silk-and-silk-based-textiles',
-      'cotton-and-khadi-textiles',
+      'traditional-regional-sarees-and-ethnic-wear',
     ],
-    technique: 'Mixed Satin Weave',
-    techniques: ['Satin Weaving', 'Striped Weft Interlacing', 'Ikat Dyeing'],
-    material: 'Silk Warp with Cotton Weft',
+    technique: 'Mixed Warp-Weft Satin Weave',
+    techniques: ['Satin Weaving', 'Ikat Dyeing'],
+    material: 'Silk (Exterior) & Cotton (Interior)',
     materials: ['Silk', 'Cotton'],
     tags: ['Gujarat', 'Mashru', 'Silk-Cotton', 'Weave'],
     shortDescription:
-      'Mashru is a historic mixed fabric featuring an opulent silk satin surface with an inner breathable cotton layer, traditionally crafted for royal utilitarian comfort.',
+      'Mashru is a luxurious woven fabric featuring a radiant silk surface on the face and soft, cooling cotton against the skin, traditionally created to conform with religious prohibitions against wearing pure silk.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Mashru_fabric_Patan.jpg/1280px-Mashru_fabric_Patan.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Mashru_fabric_Patan_Gujarat.jpg/1280px-Mashru_fabric_Patan_Gujarat.jpg',
     motifPattern: 'weave',
-    relatedTextileSlugs: ['patan-patola'],
   },
-
-  // 4. Tangaliya (Gujarat Preview)
   {
     slug: 'tangaliya',
     name: 'Tangaliya',
-    subtitle: 'The 700-Year-Old Dana Bead Weave of Surendranagar',
+    subtitle: 'The 700-Year-Old Bead-Weaving Craft of Surendranagar',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
     centre: 'Surendranagar, Gujarat',
     isFullyDeveloped: false,
-    categorySlugs: [
-      'tribal-and-indigenous-weaves',
-      'traditional-regional-sarees-and-ethnic-wear',
-    ],
-    technique: 'Dana Bead Weave',
-    techniques: ['Hand Twisted Dana Inlay', 'Pit Loom Weaving'],
-    material: 'Indigenous Wool & Cotton',
+    categorySlugs: ['tribal-and-indigenous-weaves'],
+    technique: 'Daana (Bead) Knotting',
+    techniques: ['Supplementary Weft Wrapping', 'Pit Loom Weaving'],
+    material: 'Indigenous Desi Wool & Cotton',
     materials: ['Wool', 'Cotton'],
     tags: ['Gujarat', 'Tangaliya', 'Dangasia', 'Handloom'],
     shortDescription:
-      'Tangaliya is a rare 700-year-old weaving technique by the Dangasia community, distinguished by minute raised dots (daana) spun by finger onto warp threads during weaving.',
+      'Tangaliya is an indigenous handloom technique of the Dangasia pastoralist community where microscopic fiber beads (daana) are manually twisted into the warp during weaving to produce geometric animal and tribal patterns.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tangaliya_shawl_weaving.jpg/1280px-Tangaliya_shawl_weaving.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Tangaliya_shawl_Gujarat.jpg/1280px-Tangaliya_shawl_Gujarat.jpg',
     motifPattern: 'weave',
-    relatedTextileSlugs: ['patan-patola'],
   },
-
-  // 5. Kutch Embroidery (Gujarat Preview)
   {
     slug: 'kutch-embroidery',
     name: 'Kutch Embroidery',
-    subtitle: 'Mirrorwork & Nomadic Needlecraft of Kutch',
+    subtitle: 'Vibrant Needlework, Mirrorwork & Tribal Stitch Traditions',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
-    centre: 'Kutch, Gujarat',
+    centre: 'Kutch District, Gujarat',
     isFullyDeveloped: false,
-    categorySlugs: [
-      'embroidered-textiles',
-      'tribal-and-indigenous-weaves',
-    ],
-    technique: 'Mirrorwork & Needlecraft',
-    techniques: [
-      'Ahir Embroidery',
-      'Mutwa Stitch',
-      'Suf Embroidery',
-      'Mirror Work (Abla)',
-    ],
-    material: 'Handspun Cotton & Silk Threads',
-    materials: ['Cotton', 'Silk', 'Mirrors (Abla)'],
+    categorySlugs: ['embroidered-textiles'],
+    technique: 'Surface Embroidery & Abhla (Mirrorwork)',
+    techniques: ['Suf', 'Khaarek', 'Paako', 'Rabari Stitch', 'Mutava'],
+    material: 'Handloom Cotton & Silk with Real Mirrors',
+    materials: ['Cotton', 'Silk', 'Glass Mirrors'],
     tags: ['Gujarat', 'Kutch', 'Embroidery', 'Mirrorwork'],
     shortDescription:
-      'Kutch Embroidery is a vibrant folk needlework tradition practiced by nomadic and pastoral communities, renowned for geometric mirrorwork and intricate chain stitches.',
+      'Kutch embroidery encompasses an extraordinary mosaic of tribal needlecrafts—including Suf, Rabari, and Ahir styles—distinguished by shimmering mirrors and dense geometric stitching.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Kutch_embroidery_detail.jpg/1280px-Kutch_embroidery_detail.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Kutch_embroidery_detail.jpg/1280px-Kutch_embroidery_detail.jpg',
     motifPattern: 'bandhani',
-    relatedTextileSlugs: ['bandhani', 'ajrakh'],
   },
-
-  // 6. Ajrakh (Gujarat Preview)
   {
     slug: 'ajrakh',
     name: 'Ajrakh',
-    subtitle: 'Sacred Geometric Indigo & Madder Block Print',
+    subtitle: 'Ancient Natural Block Printing of Kutch & Dhamadka',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
     centre: 'Ajrakhpur & Dhamadka, Gujarat',
     isFullyDeveloped: false,
-    categorySlugs: [
-      'ikat-tie-dye-and-block-printed-textiles',
-      'traditional-regional-sarees-and-ethnic-wear',
-    ],
-    technique: 'Resist Woodblock Printing',
-    techniques: [
-      '16-Stage Resist Printing',
-      'Natural Indigo Dyeing',
-      'Madder Boiling',
-    ],
-    material: 'Handloom Cotton',
-    materials: ['Cotton', 'Natural Indigo', 'Madder Root'],
+    categorySlugs: ['ikat-tie-dye-and-block-printed-textiles'],
+    technique: 'Double-Sided Block Printing & Resist Dyeing',
+    techniques: ['Carved Wood Blocks', 'Mordant Printing', 'River Washing'],
+    material: 'Natural Cotton & Vegetable Dyes',
+    materials: ['Cotton', 'Indigo', 'Madder', 'Iron Rust'],
     tags: ['Gujarat', 'Ajrakh', 'Block Print', 'Natural Dye'],
     shortDescription:
-      'Ajrakh is a complex 16-stage resist block-printed cotton textile featuring celestial geometric stars and floral mandalas dyed in natural indigo and alizarin red.',
+      'Ajrakh is an intricate 16-stage block-printing tradition characterized by symmetrical stars and cosmic grids dyed with natural indigo, madder root, and mineral mordants on both sides of the cloth.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Ajrakh_printing_blocks.jpg/1280px-Ajrakh_printing_blocks.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ajrakh_block_print_fabric.jpg/1280px-Ajrakh_block_print_fabric.jpg',
     motifPattern: 'blockprint',
-    relatedTextileSlugs: ['bandhani', 'kutch-embroidery'],
   },
-
-  // 7. Gharchola (Gujarat Preview)
   {
     slug: 'gharchola',
     name: 'Gharchola',
-    subtitle: 'Auspicious Grid-Patterned Bridal Sari of Gujarat',
+    subtitle: 'Sacred Zari Grid Wedding Sari of Gujarat',
     stateSlug: 'gujarat',
     stateName: 'Gujarat',
     regionId: 'west',
-    centre: 'Porbandar & Jamnagar, Gujarat',
+    centre: 'Porbandar & Rajkot, Gujarat',
     isFullyDeveloped: false,
     categorySlugs: [
-      'traditional-regional-sarees-and-ethnic-wear',
       'brocades-and-zari-weaves',
+      'traditional-regional-sarees-and-ethnic-wear',
       'ritual-and-ceremonial-textiles',
     ],
-    technique: 'Zari Grid with Tie-Dye',
-    techniques: [
-      'Zari Grid Weaving',
-      'Bandhani Knotting',
-      'Gold Brocading',
-    ],
-    material: 'Gaji Silk & Real Gold Zari',
-    materials: ['Silk', 'Zari', 'Cotton'],
+    technique: 'Zari Grid Weave & Bandhani Tie-Dye',
+    techniques: ['Supplementary Zari', 'Resist Knotting', 'Bridal Dyeing'],
+    material: 'Pure Silk with Real Zari Threads',
+    materials: ['Silk', 'Zari (Gold/Silver Metallic Thread)'],
     tags: ['Gujarat', 'Gharchola', 'Zari', 'Bridal'],
     shortDescription:
-      'Gharchola is an auspicious bridal drape characterized by a golden zari grid (chowk) containing hand-knotted bandhani motifs, gifted to new brides across Gujarat.',
+      'Gharchola is an auspicious Gujarati bridal textile woven with a golden zari check grid (chowk) of 52 or 108 squares, inside each of which intricate Bandhani motifs are meticulously tied and dyed.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Gharchola_saree_gujarat.jpg/1280px-Gharchola_saree_gujarat.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Gharchola_sari_detail.jpg/1280px-Gharchola_sari_detail.jpg',
     motifPattern: 'brocade',
-    relatedTextileSlugs: ['bandhani', 'patan-patola'],
   },
 
-  // 8. Pochampally Ikat (Telangana Preview)
+  // ==========================================
+  // RELATED IKAT TEXTILES (isFullyDeveloped: false)
+  // ==========================================
   {
     slug: 'pochampally-ikat',
     name: 'Pochampally Ikat',
-    subtitle: 'Telangana Geometric Double Ikat Silk (Pagdu Bandhu)',
+    subtitle: 'The Geometric Pagdu Bandhu of Telangana',
     stateSlug: 'telangana',
     stateName: 'Telangana',
     regionId: 'south',
     centre: 'Bhoodan Pochampally, Telangana',
     isFullyDeveloped: false,
-    categorySlugs: [
-      'ikat-tie-dye-and-block-printed-textiles',
-      'silk-and-silk-based-textiles',
-    ],
-    technique: 'Single & Double Ikat',
-    techniques: ['Tie-Dye Warp/Weft', 'Frame Loom Weaving'],
+    categorySlugs: ['ikat-tie-dye-and-block-printed-textiles'],
+    technique: 'Single & Double Ikat Weaving',
+    techniques: ['Resist Tie-Dye', 'Handloom Weaving'],
     material: 'Mulberry Silk & Fine Cotton',
     materials: ['Silk', 'Cotton'],
     tags: ['Telangana', 'Ikat', 'Pochampally', 'Silk'],
     shortDescription:
-      'Pochampally Ikat is a celebrated handwoven textile from Telangana known for geometric double and single ikat motifs woven in silk and cotton in the silk village of Pochampally.',
+      'Pochampally Ikat, known as Pagdu Bandhu, is a renowned resist-dyeing tradition from Telangana featuring modern geometric and traditional temple motifs with sharp, crisp contours.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Pochampally_saree.jpg/1280px-Pochampally_saree.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Pochampally_saree.jpg/1280px-Pochampally_saree.jpg',
     motifPattern: 'ikat',
-    relatedTextileSlugs: ['patan-patola', 'odisha-ikat'],
   },
-
-  // 9. Odisha Ikat (Odisha Preview)
   {
     slug: 'odisha-ikat',
     name: 'Odisha Ikat',
-    subtitle: 'Sacred Bandha Weaving Heritage of Sambalpur',
+    subtitle: 'The Sacred Curvilinear Bandha of Sambalpur & Bargarh',
     stateSlug: 'odisha',
     stateName: 'Odisha',
     regionId: 'east',
     centre: 'Sambalpur & Nuapatna, Odisha',
     isFullyDeveloped: false,
-    categorySlugs: [
-      'ikat-tie-dye-and-block-printed-textiles',
-      'silk-and-silk-based-textiles',
-    ],
-    technique: 'Bandha (Resist Dyed Weft/Warp Ikat)',
-    techniques: ['Bandha Tie-Dye', 'Traditional Fly-Shuttle Weaving'],
-    material: 'Tussar & Mulberry Silk',
-    materials: ['Silk', 'Cotton'],
-    tags: ['Odisha', 'Bandha', 'Ikat', 'Handloom'],
+    categorySlugs: ['ikat-tie-dye-and-block-printed-textiles'],
+    technique: 'Bandha (Curvilinear Single & Double Ikat)',
+    techniques: ['Resist Dyeing', 'Temple Motifs', 'Tussar Weaving'],
+    material: 'Mulberry Silk, Tussar & Cotton',
+    materials: ['Silk', 'Cotton', 'Tussar'],
+    tags: ['Odisha', 'Bandha', 'Ikat', 'Sambalpuri'],
     shortDescription:
-      'Odisha Ikat (Bandha) is an iconic resist-dyed weaving art embodying temple motifs like conch shells, lotus rosettes, and verses from the Gita Govinda.',
+      'Odisha Ikat, known locally as Bandha, is celebrated for its graceful feathered edges and lyrical curved motifs inspired by temple architecture, sea conches, and sacred lotus flowers.',
     heroImage:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Sambalpuri_sari.jpg/1280px-Sambalpuri_sari.jpg',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sambalpuri_sari.jpg/1280px-Sambalpuri_sari.jpg',
     motifPattern: 'ikat',
-    relatedTextileSlugs: ['patan-patola', 'pochampally-ikat'],
   },
 ];

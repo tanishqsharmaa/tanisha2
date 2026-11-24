@@ -35,5 +35,6 @@ lerna-debug.log*
 # Testing & Coverage
 coverage/
 
-# Worktrees
+# Worktrees & External Result Reports
 .worktrees/
+docs/exec-plans/active/*.result.md
